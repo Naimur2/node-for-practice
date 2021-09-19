@@ -2,20 +2,21 @@ const express = require('express');
 
 const app = express();
 
-const router = express.Router({
-    caseSensitive: true,
-});
+app.set('view engine', 'ejs');
 
-app.use(router);
-
-router.get('/about', (req, res) => {
-    res.send('This is the home page');
-});
-
-router.post('/', (req, res) => {
-    console.log(req.body);
-    res.send('This is the home page with post method');
-});
+app.route('/about/mission')
+    .get((req, res) => {
+        res.render('pages/about');
+    })
+    .post((req, res) => {
+        res.send('This is the post method');
+    })
+    .put((req, res) => {
+        res.send('This is the put method');
+    })
+    .delete((req, res) => {
+        res.send('This is the delete method');
+    });
 
 app.listen(3000, () => {
     console.log('listining on port 3000');
