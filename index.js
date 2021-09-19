@@ -2,17 +2,17 @@ const express = require('express');
 
 const app = express();
 
-app.use(
-    express.static(`${__dirname}/public/`, {
-        index: 'home.html',
-    })
-);
+const router = express.Router({
+    caseSensitive: true,
+});
 
-app.get('/', (req, res) => {
+app.use(router);
+
+router.get('/about', (req, res) => {
     res.send('This is the home page');
 });
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body);
     res.send('This is the home page with post method');
 });
